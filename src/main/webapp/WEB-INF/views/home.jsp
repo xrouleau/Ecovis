@@ -5,10 +5,7 @@
     <%@include file="header.jsp"%>
 </head>
 <body class="custom-bg-dark">
-<div class="container-fluid">
-    <div class="row text-center">
-        <h1>Ecovis</h1>
-    </div>
+<div class="container large color2">
 </div>
 </body>
 </html>
