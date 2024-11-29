@@ -15,7 +15,7 @@
                     <a class="nav-link" aria-current="page" href="<c:url value="/"/> ">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="#"/> ">Nouvelles</a>
+                    <a class="nav-link" href="<c:url value="/nouvelles"/> ">Nouvelles</a>
                 </li>
             </ul>
         </div>

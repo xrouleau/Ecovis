@@ -24,7 +24,8 @@ public class SecurityConfig {
                             "/WEB-INF/**",
                             "/liste",
                             "/css/**",
-                            "/images/**"
+                            "/images/**",
+                            "/nouvelles"
                     ).permitAll();
                     auth.anyRequest().authenticated();
                 }).formLogin(form -> {}).headers(headers -> {
