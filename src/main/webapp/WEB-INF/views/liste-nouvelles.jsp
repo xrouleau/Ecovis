@@ -10,10 +10,14 @@
     <div class="row text-center">
         <h1 class="my-5">Nouvelles</h1>
     </div>
+
     <div class="container">
         <div class="row row-cols-1">
             <c:forEach var="nouvelle" items="${nouvelles}">
                 <div class="col">
+                    <div>
+                        <a class="btn" href="<c:url value="/enregistrer"/> ">Enregistrer</a>
+                    </div>
                     <div class="card my-2">
                         <div class="card-body">
                             <div class="container">
@@ -27,7 +31,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer text-body-secondary">
+                        <div class="card-footer color2">
                                 ${nouvelle.datePublication}
                         </div>
                     </div>

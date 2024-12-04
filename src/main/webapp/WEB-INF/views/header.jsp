@@ -22,7 +22,7 @@
         <div class="float-sm-end color1" id="navbarNav2">
             <ul class="navbar-nav float-end">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="<c:url value="/"/> ">Connexion</a>
+                    <a class="nav-link" aria-current="page" href="<c:url value="/connexion"/> ">Connexion</a>
                 </li>
             </ul>
         </div>

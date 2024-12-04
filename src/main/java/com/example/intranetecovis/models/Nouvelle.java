@@ -29,6 +29,6 @@ public class Nouvelle {
     private Date datePublication;
 
     @ManyToMany(mappedBy = "nouvelles")
-    private List<Utilisateur> employes =  new ArrayList<>();
+    private List<Utilisateur> utilisateurs =  new ArrayList<>();
 
 }

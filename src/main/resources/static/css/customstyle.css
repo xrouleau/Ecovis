@@ -29,3 +29,12 @@
 .back {
     z-index: -1;
 }
+
+.min {
+    min-width: 400px;
+}
+
+.center {
+    margin: auto;
+}
+

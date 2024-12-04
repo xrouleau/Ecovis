@@ -15,12 +15,20 @@ VALUES
 
 INSERT IGNORE INTO utilisateurs
 VALUES
-    (1, 'jburton@gmail.com', 'Burton', 'test', 'Jack', 3),
-    (2, 'xrouleau@gmail.com', 'Rouleau', 'test', 'Xavier', 1),
-    (3, 'bdube@gmail.com', 'Dubé', 'test', 'Béatrice', 2);
+    (1, 'jburton@gmail.com', 'Burton', 'test', 'Jack', 'jburton'),
+    (2, 'xrouleau@gmail.com', 'Rouleau', 'test', 'Xavier','xrouleau'),
+    (3, 'bdube@gmail.com', 'Dubé', 'test', 'Béatrice', 'bdube');
 
 INSERT IGNORE INTO utilisateurs_nouvelles
 VALUES
     (3, 2),
     (3, 1);
 
+INSERT IGNORE INTO utilisateurs_roles
+VALUES
+    (2, 1),
+    (2, 2),
+    (2, 3),
+    (1, 3),
+    (2, 2),
+    (2, 3);

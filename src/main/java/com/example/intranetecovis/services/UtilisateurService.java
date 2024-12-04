@@ -1,12 +1,15 @@
 package com.example.intranetecovis.services;
 
 import com.example.intranetecovis.models.DTOInscription;
+import com.example.intranetecovis.models.Nouvelle;
 import com.example.intranetecovis.models.Role;
 import com.example.intranetecovis.models.Utilisateur;
 import com.example.intranetecovis.repositories.IRoleRepository;
 import com.example.intranetecovis.repositories.IUtilisateurRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UtilisateurService {
@@ -32,5 +35,7 @@ public class UtilisateurService {
         return utilisateurRepository.save(user);
     }
 
-
+    public Utilisateur findByUsername(String username) {
+        return utilisateurRepository.findUtilisateurByUsername(username);
+    }
 }
