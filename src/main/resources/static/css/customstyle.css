@@ -3,13 +3,29 @@
 }
 
 .color2 {
-    background-color: antiquewhite;
+    background-color: #DCE9C2;
 }
 
-.color2 {
-    background-color: blue;
+
+.image1 {
+    width: 640px;
+    height: 1137px;
 }
 
-.large {
-    width: 100%;
+.image2{
+    width: 640px;
+    height: 960px;
+}
+
+.height {
+    height: 1200px;
+}
+
+.paddingHome {
+    padding-left: 125px;
+    padding-right: 125px;
+}
+
+.back {
+    z-index: -1;
 }

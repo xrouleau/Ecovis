@@ -11,13 +11,21 @@
         <h1 class="my-5">Nouvelles</h1>
     </div>
     <div class="container">
-        <div class="row row-cols-3">
+        <div class="row row-cols-1">
             <c:forEach var="nouvelle" items="${nouvelles}">
                 <div class="col">
                     <div class="card my-2">
                         <div class="card-body">
-                            <h5 class="card-title">${nouvelle.titre}</h5>
-                            <a href="#" class="btn color1">Lire</a>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col ">
+                                        <h5 class="card-title">${nouvelle.titre}</h5>
+                                    </div>
+                                    <div class="col">
+                                        <a href="#" class="btn color1 float-end" data-bs-theme="dark">Lire</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer text-body-secondary">
                                 ${nouvelle.datePublication}
