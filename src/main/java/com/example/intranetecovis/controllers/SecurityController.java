@@ -28,7 +28,7 @@ public class SecurityController {
     }
 
     @PostMapping("/enregistrer")
-    public String enregistrer(@Valid @ModelAttribute("dto") DTOInscription dto, BindingResult bindingResult) {
+    public String enregistrer(@Valid @ModelAttribute("dto") DTOInscription dto, @ModelAttribute("role") int role, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "enregistrement";
         }
@@ -38,6 +38,7 @@ public class SecurityController {
         System.out.println(dto.getEmail());
         System.out.println(dto.getPassword1());
         System.out.println(dto.getPassword2());
+        System.out.println(role);
         return "redirect:/nouvelles";
     }
 }

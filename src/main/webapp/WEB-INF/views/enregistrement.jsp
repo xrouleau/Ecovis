@@ -36,28 +36,25 @@
                         <form:input path="email" type="email" cssClass="form-control"/>
                         <form:errors path="email" cssClass="text-body-danger" />
                     </div>
-                    <form:select path="roles" cssClass="form-select" aria-label="Default select example">
-                        <form:option selected="true" value="1">Utilisateur</form:option>
-                        <form:option value="2">Communication</form:option>
-                        <form:option value="3">Administrateur</form:option>
-                    </form:select>
-                    <select class="form-select" aria-label="Default select example" id="roles">
-                        <option value="1" selected>Utilisateur</option>
+                    <label for="role" >Role</label>
+                    <select name="role" class="form-select mb-3" aria-label="Default select example" id="role">
+                        <option selected value="1">Utilisateur</option>
                         <option value="2">Communication</option>
                         <option value="3">Administrateur</option>
                     </select>
                     <div class="mb-3">
-                        <label for="password1" class="form-label">Mot de passe</label>
-                        <input type="password" required class="form-control" name="password1" id="password1">
+                        <form:label path="password1" cssClass="form-label">Mot de passe</form:label>
+                        <form:input path="password1" type="password" cssClass="form-control"/>
+                        <form:errors path="password1" cssClass="text-body-danger" />
                     </div>
                     <div class="mb-3">
-                        <label for="password2" class="form-label">Confirmer le mot de passe</label>
-                        <input type="password" required class="form-control" name="password2" id="password2">
+                        <form:label path="password2" cssClass="form-label">Confirmer le mot de passe</form:label>
+                        <form:input path="password2" type="password" cssClass="form-control"/>
+                        <form:errors path="password2" cssClass="text-body-danger" />
                     </div>
                     <button type="submit" class="btn btn-primary">Se connecter</button>
                 </form:form>
             </div>
-
         </div>
     </div>
 </div>

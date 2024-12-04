@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,23 +19,21 @@ import java.util.List;
 @Builder
 public class DTOInscription {
     @NotNull(message = "Veuillez saisir le nom")
-    @Min(value = 2, message = "Le nom doit être composé d'au minimum 2 charatères")
+    @Length(min = 2, max = 30, message = "Le nom doit être composé d'un minimum de 2 charatères et d'un maximum de 30")
     private String nom;
     @NotNull(message = "Veuillez saisir le prenom")
-    @Min(value = 2, message = "Le prenom doit être composé d'au minimum 2 charatères")
+    @Length(min = 2, max = 30, message = "Le prénom doit être composé d'un minimum de 2 charatères et d'un maximum de 30")
     private String prenom;
     @NotNull(message = "Veuillez saisir le courriel")
     @Email
     private String email;
     @NotNull(message = "Veuillez saisir le mot de passe")
-    @Min(value = 8, message = "Le mot de passe doit être composé d'au minimum 8 charatères")
+    @Length(min = 8, max = 30, message = "Le mot de passe doit être composé d'un minimum de 8 charatères et d'un maximum de 30")
     private String password1;
     @NotNull(message = "Veuillez saisir la confirmation du mot de passe")
-    @Min(value = 8, message = "Le mot de passe doit être composé d'au minimum 8 charatères")
+    @Length(min = 8, max = 30, message = "Le mot de passe doit être composé d'un minimum de 8 charatères et d'un maximum de 30")
     private String password2;
     @NotNull(message = "Veuillez saisir le nom d'utilisateur")
-    @Min(value = 5, message = "Le nom d'utilisateur doit être composé d'au minimum 5 charatères")
+    @Length(min = 5, max = 30, message = "Le nom d'utilisateur doit être composé d'un minimum de 8 charatères et d'un maximum de 30")
     private String username;
-    @NotNull
-    private List<Role> roles = new ArrayList<>();
 }
