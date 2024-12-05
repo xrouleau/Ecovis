@@ -15,9 +15,9 @@ VALUES
 
 INSERT IGNORE INTO utilisateurs
 VALUES
-    (1, 'jburton@gmail.com', 'Burton', 'test', 'Jack', 'jburton'),
-    (2, 'xrouleau@gmail.com', 'Rouleau', 'test', 'Xavier','xrouleau'),
-    (3, 'bdube@gmail.com', 'Dubé', 'test', 'Béatrice', 'bdube');
+    (1, 'jburton@gmail.com', 'Burton', '$2a$10$l5rbv0eQQAW9OyEGaPKeG.QOoSKLHZ9BOihzEZlKQKm7p5SY1.lRW', 'Jack', 'jburton'),
+    (2, 'xrouleau@gmail.com', 'Rouleau', '$2a$10$l5rbv0eQQAW9OyEGaPKeG.QOoSKLHZ9BOihzEZlKQKm7p5SY1.lRW', 'Xavier','xrouleau'),
+    (3, 'bdube@gmail.com', 'Dubé', '$2a$10$l5rbv0eQQAW9OyEGaPKeG.QOoSKLHZ9BOihzEZlKQKm7p5SY1.lRW', 'Béatrice', 'bdube');
 
 INSERT IGNORE INTO utilisateurs_nouvelles
 VALUES

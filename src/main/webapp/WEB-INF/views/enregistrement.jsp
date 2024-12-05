@@ -38,9 +38,9 @@
                     </div>
                     <label for="role" >Role</label>
                     <select name="role" class="form-select mb-3" aria-label="Default select example" id="role">
-                        <option selected value="1">Utilisateur</option>
+                        <option selected value="3">Utilisateur</option>
                         <option value="2">Communication</option>
-                        <option value="3">Administrateur</option>
+                        <option value="1">Administrateur</option>
                     </select>
                     <div class="mb-3">
                         <form:label path="password1" cssClass="form-label">Mot de passe</form:label>

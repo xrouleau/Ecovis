@@ -20,8 +20,8 @@ public class RoleService {
         return roleRepository.findAll();
     }
 
-    public Optional<Role> findById(int id) {
-        return roleRepository.findById(id);
+    public Role findById(int id) {
+        return roleRepository.findById(id).get();
     }
 
     public Role findByName(String name) {
