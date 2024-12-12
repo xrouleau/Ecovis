@@ -1,11 +1,11 @@
 INSERT IGNORE INTO nouvelles
 VALUES
-    (1,  'Bla bla bla',  '2024-06-21 12:12:12.123456', 'Réchauffement climatique'),
-    (2,  'Plein de mots',  '2024-06-21 12:12:12.123456', 'Politique écologique'),
-    (3,  'Un gros speech',  '2024-06-21 12:12:12.123456', 'Papier de toilette réutilisable'),
-    (4,  'Bla bla bla',  '2024-06-21 12:12:12.123456', 'Réchauffement climatique'),
-    (5,  'Plein de mots',  '2024-06-21 12:12:12.123456', 'Politique écologique'),
-    (6,  'Un gros speech',  '2024-06-21 12:12:12.123456', 'Papier de toilette réutilisable');
+    (1,  'Bla bla bla',  '2022-06-21 12:12:12.123456', '1', 'Réchauffement climatique'),
+    (2,  'Plein de mots',  '2024-07-21 12:12:12.123456', '1', 'Politique écologique'),
+    (3,  'Un gros speech',  '2024-06-21 12:12:12.123456', '1', 'Papier de toilette réutilisable'),
+    (4,  'Bla bla bla',  '2024-06-23 12:12:12.123456', '1', 'Réchauffement climatique'),
+    (5,  'Plein de mots',  '2024-06-21 12:12:12.123456', '1', 'Politique écologique'),
+    (6,  'Un gros speech',  '2024-06-01 12:12:12.123456', '1', 'Papier de toilette réutilisable');
 
 INSERT IGNORE INTO roles
 VALUES
@@ -30,5 +30,5 @@ VALUES
     (2, 2),
     (2, 3),
     (1, 3),
-    (2, 2),
-    (2, 3);
+    (3, 2),
+    (3, 3);

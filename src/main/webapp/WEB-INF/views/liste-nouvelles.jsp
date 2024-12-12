@@ -5,19 +5,16 @@
     <title>Nouvelles</title>
     <%@include file="header.jsp"%>
 </head>
+<sec:authorize access="isAuthenticated()">
 <body class="custom-bg-transparent">
 <div class="container-fluid">
     <div class="row text-center">
         <h1 class="my-5">Nouvelles</h1>
     </div>
-
     <div class="container">
         <div class="row row-cols-1">
             <c:forEach var="nouvelle" items="${nouvelles}">
                 <div class="col">
-                    <div>
-                        <a class="btn" href="<c:url value="/enregistrer"/> ">Enregistrer</a>
-                    </div>
                     <div class="card my-2">
                         <div class="card-body">
                             <div class="container">
@@ -26,7 +23,7 @@
                                         <h5 class="card-title">${nouvelle.titre}</h5>
                                     </div>
                                     <div class="col">
-                                        <a href="#" class="btn color1 float-end" data-bs-theme="dark">Lire</a>
+                                        <a href="<c:url value="/lire/${nouvelle.id}"/>" class="btn color1 float-end" data-bs-theme="dark">Lire</a>
                                     </div>
                                 </div>
                             </div>
@@ -41,5 +38,5 @@
     </div>
 
 </div>
-</body>
+</body></sec:authorize>
 </html>

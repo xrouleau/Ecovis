@@ -38,3 +38,14 @@
     margin: auto;
 }
 
+.infos {
+    font-size: 25px;
+}
+
+.date {
+    color: dimgrey;
+}
+
+.button {
+    width: 100px;
+}

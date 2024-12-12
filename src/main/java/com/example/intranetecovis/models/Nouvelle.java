@@ -6,8 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -26,9 +26,17 @@ public class Nouvelle {
     private String contenu;
 
     @Column(name = "date_publication")
-    private Date datePublication;
+    private Timestamp datePublication;
+
+    private Boolean publie;
 
     @ManyToMany(mappedBy = "nouvelles")
     private List<Utilisateur> utilisateurs =  new ArrayList<>();
 
+    @PreRemove
+    private void removeUtilisateur() {
+        for (Utilisateur u : utilisateurs) {
+            u.setNouvelles(null);
+        }
+    }
 }

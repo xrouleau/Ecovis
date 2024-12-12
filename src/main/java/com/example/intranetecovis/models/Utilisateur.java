@@ -45,4 +45,11 @@ public class Utilisateur {
             uniqueConstraints = @UniqueConstraint(columnNames = {"utilisateur_id", "role_id"})
     )
     private List<Role> roles = new ArrayList<>();
+
+    @PreRemove
+    private void removeUtilisateur() {
+        for (Nouvelle nouvelle : nouvelles) {
+            nouvelle.setUtilisateurs(null);
+        }
+    }
 }

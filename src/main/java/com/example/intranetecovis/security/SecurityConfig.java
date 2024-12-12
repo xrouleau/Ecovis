@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.header.writers.XXssProtectionHeaderWriter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Controller;
 
 @Configuration
@@ -35,8 +36,7 @@ public class SecurityConfig {
                             "/liste",
                             "/css/**",
                             "/images/**",
-                            "/nouvelles",
-                            "/enregistrer",
+                            "/connexion",
                             "/error"
                     ).permitAll();
                     auth.anyRequest().authenticated();
@@ -52,6 +52,8 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/nouvelles")
                         .loginProcessingUrl("/connexionSubmit")
                         .failureUrl("/error")
+                        .permitAll())
+                .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/deconnexion"))
                         .permitAll())
         ;
         return http.build();
