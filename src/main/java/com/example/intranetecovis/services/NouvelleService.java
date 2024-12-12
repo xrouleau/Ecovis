@@ -5,6 +5,7 @@ import com.example.intranetecovis.models.Utilisateur;
 import com.example.intranetecovis.repositories.INouvelleRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -22,23 +23,34 @@ public class NouvelleService {
     // déclaration des variables de classe
     private INouvelleRepository nouvelleRepository;
     private UtilisateurService utilisateurService;
+    private RoleService roleService;
 
     /***
      * Constructeur de la classe NouvelleService
      * @param nouvelleRepository Repository des nouvelles
      * @param utilisateurService Service des utilisateurs
+     * @param roleService Service des roles
      */
-    public NouvelleService(INouvelleRepository nouvelleRepository, UtilisateurService utilisateurService) {
+    public NouvelleService(INouvelleRepository nouvelleRepository, UtilisateurService utilisateurService, RoleService roleService) {
         this.nouvelleRepository = nouvelleRepository;
         this.utilisateurService = utilisateurService;
+        this.roleService = roleService;
     }
 
     /***
      * retourne toutes les nouvelles publiées en ordre décroissant selon la date
      * @return toutes les nouvelles publiées en ordre décroissant selon la date
      */
-    public List<Nouvelle> getAll() {
+    public List<Nouvelle> getAllPublie() {
         return nouvelleRepository.findByPublieEqualsOrderByDatePublicationDesc(true);
+    }
+
+    /***
+     * retourne toutes les nouvelles en ordre décroissant selon la date
+     * @return toutes les nouvelles en ordre décroissant selon la date
+     */
+    public List<Nouvelle> getAll() {
+        return nouvelleRepository.findAllByOrderByDatePublicationDesc();
     }
 
     /***
@@ -52,9 +64,13 @@ public class NouvelleService {
         nouvelle.setPublie(false);
         nouvelle.setContenu("");
         nouvelle.setDatePublication(new Timestamp(System.currentTimeMillis()));
-        List<Utilisateur> utilisateurs = new ArrayList<>();
-        utilisateurs.add(u);
-        nouvelle.setUtilisateurs(utilisateurs);
+        List<Utilisateur> utilisateurs = utilisateurService.getAdmins();
+        if (u.getRoles().contains(roleService.findById(1))) {
+            nouvelle.setUtilisateurs(utilisateurs);
+        } else {
+            utilisateurs.add(u);
+            nouvelle.setUtilisateurs(utilisateurs);
+        }
         nouvelleRepository.save(nouvelle);
     }
 
@@ -117,7 +133,17 @@ public class NouvelleService {
         utilisateurs.remove(u);
         n.setUtilisateurs(utilisateurs);
         System.out.println(n.getUtilisateurs().size());
-        nouvelleRepository.save(n);
+        try {
+            nouvelleRepository.save(n);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        u.getNouvelles().remove(n);
+        try {
+            utilisateurService.sauvegarder(u);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /***
@@ -136,7 +162,19 @@ public class NouvelleService {
         utilisateurs.add(u);
         n.setUtilisateurs(utilisateurs);
         System.out.println(n.getUtilisateurs().size());
-        nouvelleRepository.save(n);
+        try {
+            nouvelleRepository.save(n);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        u.getNouvelles().add(n);
+        try {
+            utilisateurService.sauvegarder(u);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 
     /***

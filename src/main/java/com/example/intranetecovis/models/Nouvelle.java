@@ -1,10 +1,7 @@
 package com.example.intranetecovis.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -23,6 +20,7 @@ public class Nouvelle {
 
     private String titre;
 
+    @Column(length = 5000)
     private String contenu;
 
     @Column(name = "date_publication")
@@ -30,6 +28,7 @@ public class Nouvelle {
 
     private Boolean publie;
 
+    @ToString.Exclude
     @ManyToMany(mappedBy = "nouvelles")
     private List<Utilisateur> utilisateurs =  new ArrayList<>();
 

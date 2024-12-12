@@ -2,10 +2,7 @@ package com.example.intranetecovis.models;
 
 import jakarta.persistence.*;
 import jdk.jshell.execution.Util;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +19,7 @@ public class Role {
     private int id;
     private String name;
 
+    @ToString.Exclude
     @ManyToMany(mappedBy = "roles")
     private List<Utilisateur> utilisateurs =  new ArrayList<>();
 

@@ -14,4 +14,7 @@ public interface INouvelleRepository extends JpaRepository<Nouvelle, Integer> {
 
     // Toutes les nouvelles publiées en ordre décroissant de date
     List<Nouvelle> findByPublieEqualsOrderByDatePublicationDesc(Boolean publie);
+
+    // Toutes les nouvelles en ordre décroissant de date
+    List<Nouvelle> findAllByOrderByDatePublicationDesc();
 }

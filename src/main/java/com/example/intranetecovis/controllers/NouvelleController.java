@@ -1,11 +1,14 @@
 package com.example.intranetecovis.controllers;
 
 import com.example.intranetecovis.models.Nouvelle;
+import com.example.intranetecovis.models.Role;
 import com.example.intranetecovis.models.Utilisateur;
 import com.example.intranetecovis.services.NouvelleService;
+import com.example.intranetecovis.services.RoleService;
 import com.example.intranetecovis.services.UtilisateurService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jdk.jshell.execution.Util;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -31,15 +34,17 @@ public class NouvelleController {
     // déclaration des variables de classe
     private NouvelleService nouvelleService;
     private UtilisateurService utilisateurService;
+    private RoleService roleService;
 
     /***
      * Constructeur de la classe NouvelleController
      * @param nouvelleService Service des nouvelles
      * @param utilisateurService Service des utilisateurs
      */
-    public NouvelleController(NouvelleService nouvelleService, UtilisateurService utilisateurService) {
+    public NouvelleController(NouvelleService nouvelleService, UtilisateurService utilisateurService, RoleService roleService) {
         this.nouvelleService = nouvelleService;
         this.utilisateurService = utilisateurService;
+        this.roleService = roleService;
     }
 
     /***
@@ -51,7 +56,7 @@ public class NouvelleController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/nouvelles")
     public String nouvelles(Model model, HttpSession session) {
-        List<Nouvelle> nouvelles = nouvelleService.getAll();
+        List<Nouvelle> nouvelles = nouvelleService.getAllPublie();
         model.addAttribute("nouvelles", nouvelles);
         return "liste-nouvelles";
     }
@@ -83,7 +88,15 @@ public class NouvelleController {
     @PreAuthorize("hasRole('COMM')")
     @GetMapping("/nouvellesUtilisateur")
     public String nouvellesUtilisateur(Model model, HttpSession session) {
-        List<Nouvelle> nouvelles = nouvelleService.findByUtilisateurContains((Utilisateur) session.getAttribute("user"));
+        Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
+        for (Role role1 : utilisateur.getRoles()) {
+            if (1 == role1.getId()) {
+                List<Nouvelle> nouvelles = nouvelleService.getAll();
+                model.addAttribute("nouvelles", nouvelles);
+                return "nouvelles-utilisateur";
+            }
+        }
+        List<Nouvelle> nouvelles = nouvelleService.findByUtilisateurContains(utilisateur);
         model.addAttribute("nouvelles", nouvelles);
         return "nouvelles-utilisateur";
     }
@@ -109,7 +122,8 @@ public class NouvelleController {
     @PreAuthorize("hasRole('COMM')")
     @GetMapping("/modifierNouvelle/{id}")
     public String modifierNouvelle(@PathVariable int id, Model model) {
-        model.addAttribute("nouvelle", nouvelleService.findById(id));
+        Nouvelle nouvelle = nouvelleService.findById(id);
+        model.addAttribute("nouvelle", nouvelle);
         return "modifier-nouvelle";
     }
 

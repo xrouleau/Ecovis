@@ -1,14 +1,9 @@
 package com.example.intranetecovis.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -28,6 +23,7 @@ public class Utilisateur {
     private String password;
     private String username;
 
+    @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "utilisateurs_nouvelles",
@@ -37,6 +33,7 @@ public class Utilisateur {
     )
     private List<Nouvelle> nouvelles = new ArrayList<>();
 
+    @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "utilisateurs_roles",

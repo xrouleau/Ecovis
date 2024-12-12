@@ -7,7 +7,7 @@
 </head>
 <sec:authorize access="isAuthenticated()">
 <body class="custom-bg-transparent">
-<div class="container-fluid">
+<div class="container-fluid mb-5">
     <div class="row text-center">
         <h1 class="my-5">Nouvelles</h1>
     </div>

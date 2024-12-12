@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/***
+ * Classe du Service des roles
+ */
 @Service
 public class RoleService {
     // déclaration des variables de classe
@@ -21,6 +24,11 @@ public class RoleService {
         this.roleRepository = roleRepository;
     }
 
+    /***
+     * Trouve un role selon son id
+     * @param id id du role à trouver
+     * @return le Role
+     */
     public Role findById(int id) {
         return roleRepository.findById(id).get();
     }

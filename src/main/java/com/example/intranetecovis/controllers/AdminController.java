@@ -79,8 +79,12 @@ public class AdminController {
      */
     @GetMapping("/utilisateurs")
     public String utilisateurs(Model model) {
-        List<Utilisateur> utilisateurs = utilisateurService.getAll();
+        List<Utilisateur> utilisateurs = utilisateurService.getUtils();
         model.addAttribute("utilisateurs", utilisateurs);
+        List<Utilisateur> comms = utilisateurService.getComms();
+        model.addAttribute("comms", comms);
+        List<Utilisateur> admins = utilisateurService.getAdmins();
+        model.addAttribute("admins", admins);
         return "utilisateurs";
     }
 

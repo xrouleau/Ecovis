@@ -21,7 +21,7 @@
                 </div>
                 <div class="mb-3">
                     <form:label path="contenu" cssClass="form-label">Contenu</form:label>
-                    <form:textarea path="contenu" value="${nouvelle.contenu}" type="text" cssClass="form-control"/>
+                    <form:textarea path="contenu" value="${nouvelle.contenu}" type="text" cssClass="form-control contenu"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Sauvegarder</button>
             </form:form>
