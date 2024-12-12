@@ -22,31 +22,56 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/***
+ * Controlleur de sécurité s'occupe de tous ce qui est en lien avec le compte d'un utilisateur
+ */
 @Controller
 public class SecurityController {
 
+    // déclaration des variables de classe
     private RoleService roleService;
     private UtilisateurService utilisateurService;
 
+    /***
+     * Constructeur de la classe SecurityController
+     * @param roleService service de la classe role
+     * @param utilisateurService service de la classe utilisateur
+     */
     public SecurityController(RoleService roleService, UtilisateurService utilisateurService) {
         this.roleService = roleService;
         this.utilisateurService = utilisateurService;
     }
 
+    /***
+     * Affiche le formulaire de connexion
+     * @return le formulaire de connexion
+     */
     @PreAuthorize("isAnonymous()")
     @GetMapping("/connexion")
     public String connexion() {
         return "connexion-form";
     }
 
+    /***
+     * Affiche le compte de l'utilisateur connecté
+     * @param session la session
+     * @return le compte de l'utilisateur connecté
+     */
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/compte")
     public String compte(HttpSession session) {
+        // accède à l'utilisateur connecté qui est storé dans la session
         Utilisateur user = (Utilisateur) session.getAttribute("user");
         session.setAttribute("userAModifier", user.getId());
         return "compte";
     }
 
+    /***
+     * Modifie le mot de passe de l'utilisateur
+     * @param request la requête
+     * @param session la session
+     * @return redirige vers la méthode compte
+     */
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modifierMDPCompte")
     public String modifierMDPCompte(HttpServletRequest request, HttpSession session) {

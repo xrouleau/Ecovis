@@ -33,6 +33,9 @@ public class Nouvelle {
     @ManyToMany(mappedBy = "nouvelles")
     private List<Utilisateur> utilisateurs =  new ArrayList<>();
 
+    /***
+     * Indique quoi faire avant la suppression
+     */
     @PreRemove
     private void removeUtilisateur() {
         for (Utilisateur u : utilisateurs) {

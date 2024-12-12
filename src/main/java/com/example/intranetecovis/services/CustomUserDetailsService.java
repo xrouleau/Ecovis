@@ -13,18 +13,32 @@ import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
+/***
+ * Classe qui s'occupe du login d'un utilisateur
+ */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-
+    // déclaration des variables de classe
     private UtilisateurService utilisateurService;
     private HttpSession session;
 
+    /***
+     * Constructeur de la classe CustomUserDetailsService
+     * @param utilisateurService Service de l'utilisateur
+     * @param session la sesson
+     */
     public CustomUserDetailsService(UtilisateurService utilisateurService, HttpSession session) {
         this.utilisateurService = utilisateurService;
         this.session = session;
     }
 
 
+    /***
+     * S'occupe du login d'un utilisateur
+     * @param username username de l'utilisateur
+     * @return l'utilisateur authentifié
+     * @throws UsernameNotFoundException erreur
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Utilisateur user = utilisateurService.findByUsername(username);

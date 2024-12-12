@@ -10,21 +10,18 @@ import java.util.Optional;
 
 @Service
 public class RoleService {
+    // déclaration des variables de classe
     private final IRoleRepository roleRepository;
 
+    /***
+     * Constructeur de la classe RoleService
+     * @param roleRepository
+     */
     public RoleService(IRoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
 
-    public List<Role> getAll() {
-        return roleRepository.findAll();
-    }
-
     public Role findById(int id) {
         return roleRepository.findById(id).get();
-    }
-
-    public Role findByName(String name) {
-        return roleRepository.findRoleByName(name);
     }
 }

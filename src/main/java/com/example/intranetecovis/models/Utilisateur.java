@@ -46,6 +46,9 @@ public class Utilisateur {
     )
     private List<Role> roles = new ArrayList<>();
 
+    /***
+     * Indique quoi faire avant la suppression
+     */
     @PreRemove
     private void removeUtilisateur() {
         for (Nouvelle nouvelle : nouvelles) {

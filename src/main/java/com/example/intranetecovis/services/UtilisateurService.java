@@ -14,6 +14,7 @@ import java.util.Objects;
 
 @Service
 public class UtilisateurService {
+    // déclaration des variables de classe
     private PasswordEncoder passwordEncoder;
     private IUtilisateurRepository utilisateurRepository;
     private RoleService roleService;

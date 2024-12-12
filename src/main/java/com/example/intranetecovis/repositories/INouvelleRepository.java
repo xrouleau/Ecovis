@@ -9,7 +9,9 @@ import java.util.List;
 
 public interface INouvelleRepository extends JpaRepository<Nouvelle, Integer> {
 
+    // Toutes les nouvelles d'un utilisateur en ordre décroissant de date
     List<Nouvelle> findByUtilisateursContainsOrderByDatePublication(Utilisateur utilisateur);
 
+    // Toutes les nouvelles publiées en ordre décroissant de date
     List<Nouvelle> findByPublieEqualsOrderByDatePublicationDesc(Boolean publie);
 }

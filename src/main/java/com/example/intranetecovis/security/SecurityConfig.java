@@ -14,12 +14,19 @@ import org.springframework.security.web.header.writers.XXssProtectionHeaderWrite
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Controller;
 
+/***
+ * Classe qui s'occupe de la sécurité et de l'authentification
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
+    // déclaration des variables de classe
     private final CustomUserDetailsService customUserDetailsService;
 
+    /***
+     * Constructeur de la classe SecurityConfig
+     * @param customUserDetailsService Service pour la connexion d'un utilisateur
+     */
     public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
         this.customUserDetailsService = customUserDetailsService;
     }
@@ -30,10 +37,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(
                             "/",
-                            "/login",
-                            "/register",
                             "/WEB-INF/**",
-                            "/liste",
                             "/css/**",
                             "/images/**",
                             "/connexion",
