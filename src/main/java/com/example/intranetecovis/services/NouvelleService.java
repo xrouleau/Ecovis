@@ -138,4 +138,17 @@ public class NouvelleService {
         System.out.println(n.getUtilisateurs().size());
         nouvelleRepository.save(n);
     }
+
+    /***
+     * Modifie une nouvelle
+     * @param id id de la nouvelle à modifier
+     * @param titre nouveau titre
+     * @param contenu nouveau contenu
+     */
+    public void modifierNouvelle(int id, String titre, String contenu) {
+        Nouvelle nouvelle = findById(id);
+        nouvelle.setTitre(titre);
+        nouvelle.setContenu(contenu);
+        nouvelleRepository.save(nouvelle);
+    }
 }

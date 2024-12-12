@@ -30,7 +30,7 @@ public class Utilisateur {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name="utilisateurs_nouvelles",
+            name = "utilisateurs_nouvelles",
             joinColumns = @JoinColumn(name = "utilisateur_id"),
             inverseJoinColumns = @JoinColumn(name = "nouvelle_id"),
             uniqueConstraints = @UniqueConstraint(columnNames = {"utilisateur_id", "nouvelle_id"})
@@ -39,7 +39,7 @@ public class Utilisateur {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name="utilisateurs_roles",
+            name = "utilisateurs_roles",
             joinColumns = @JoinColumn(name = "utilisateur_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"),
             uniqueConstraints = @UniqueConstraint(columnNames = {"utilisateur_id", "role_id"})
@@ -52,7 +52,9 @@ public class Utilisateur {
     @PreRemove
     private void removeUtilisateur() {
         for (Nouvelle nouvelle : nouvelles) {
-            nouvelle.setUtilisateurs(null);
+            List<Utilisateur> utilisateurs = nouvelle.getUtilisateurs();
+            utilisateurs.remove(this);
+            nouvelle.setUtilisateurs(utilisateurs);
         }
     }
 }

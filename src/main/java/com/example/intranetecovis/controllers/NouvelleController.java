@@ -114,6 +114,19 @@ public class NouvelleController {
     }
 
     /***
+     * Modifie une nouvelle
+     * @param id id de la nouvelle à modifier
+     * @param request la requête
+     * @return vers la méthode modifierNouvelle pour la nouvelle modifiée
+     */
+    @PreAuthorize("hasRole('COMM')")
+    @PostMapping("/modifierNouvelle/{id}")
+    public String modifierrNouvelle(@PathVariable int id, HttpServletRequest request) {
+        nouvelleService.modifierNouvelle(id, request.getParameter("titre"), request.getParameter("contenu"));
+        return "redirect:/modifierNouvelle/" + id;
+    }
+
+    /***
      * Permet de publier une nouvelle
      * @param id id de la nouvelle à modifier
      * @param model le modèle

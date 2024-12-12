@@ -13,7 +13,8 @@
         <div class="col px-5 color2 rounded">
             <a class="btn btn-secondary button mt-5" href="<c:url value="/nouvellesUtilisateur"/>">Retour</a>
             <h1 class="my-5 text-center">Modifier la nouvelle</h1>
-            <form:form method="post" modelAttribute="nouvelle">
+            <c:url var="URLModifierNouvelle" value="/modifierNouvelle/${nouvelle.id}"/>
+            <form:form method="post" modelAttribute="nouvelle" action="${URLModifierNouvelle}">
                 <div class="mb-3">
                     <form:label path="titre" cssClass="form-label">Titre</form:label>
                     <form:input path="titre" type="text" cssClass="form-control" value="${nouvelle.titre}"/>
@@ -22,31 +23,31 @@
                     <form:label path="contenu" cssClass="form-label">Contenu</form:label>
                     <form:textarea path="contenu" value="${nouvelle.contenu}" type="text" cssClass="form-control"/>
                 </div>
-
-                <p>Auteurs: </p>
-                <div class="container">
-                    <div class="row row-cols-5">
-                        <c:forEach var="auteur" items="${nouvelle.utilisateurs}">
-                            <div class="col ps-0">
-                                <div class="card my-2">
-                                    <div class="card-body">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col p-0">
-                                                    <h5 class="mt-2 p-auto">${user.username}</h5>
-                                                </div>
-                                                <div class="col p-0">
-                                                    <a href="<c:url value="/retirerUtilisateurNouvelle/${user.id}/${nouvelle.id}"/>" class="btn btn-danger float-end" data-bs-theme="dark">Retirer</a>
-                                                </div>
+                <button type="submit" class="btn btn-primary">Sauvegarder</button>
+            </form:form>
+            <p>Auteurs: </p>
+            <div class="container">
+                <div class="row row-cols-5">
+                    <c:forEach var="auteur" items="${nouvelle.utilisateurs}">
+                        <div class="col ps-0">
+                            <div class="card my-2">
+                                <div class="card-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col p-0">
+                                                <h5 class="mt-2 p-auto">${auteur.username}</h5>
+                                            </div>
+                                            <div class="col p-0">
+                                                <a href="<c:url value="/retirerUtilisateurNouvelle/${auteur.id}/${nouvelle.id}"/>" class="btn btn-danger float-end" data-bs-theme="dark">Retirer</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </c:forEach>
-                    </div>
+                        </div>
+                    </c:forEach>
                 </div>
-            </form:form>
+            </div>
             <p>Ajouter un auteur: </p>
             <c:url var="URLAjouterUtilisateur" value="/ajouterUtilisateurNouvelle/${nouvelle.id}"/>
             <form:form method="post" action="${URLAjouterUtilisateur}">
@@ -54,7 +55,7 @@
                     <label for="username" class="form-label">Nom d'utilisateur</label>
                     <input type="text" required class="form-control" name="username" id="username">
                 </div>
-                <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
             </form:form>
             <a class="btn btn-danger button mb-5 float-end" href="<c:url value="/supprimerNouvelle/${nouvelle.id}"/>">Supprimer</a>
         </div>
