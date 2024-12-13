@@ -6,6 +6,7 @@ import lombok.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -38,9 +39,9 @@ public class Nouvelle {
     @PreRemove
     private void removeUtilisateur() {
         for (Utilisateur u : utilisateurs) {
-            List<Nouvelle> nouvelles = u.getNouvelles();
+            List<Nouvelle> nouvelles = (List<Nouvelle>) u.getNouvelles();
             nouvelles.remove(this);
-            u.setNouvelles(nouvelles);
+            u.setNouvelles((Set<Nouvelle>) nouvelles);
         }
     }
 }

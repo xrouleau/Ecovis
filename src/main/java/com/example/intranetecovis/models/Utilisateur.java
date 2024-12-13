@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -31,7 +33,7 @@ public class Utilisateur {
             inverseJoinColumns = @JoinColumn(name = "nouvelle_id"),
             uniqueConstraints = @UniqueConstraint(columnNames = {"utilisateur_id", "nouvelle_id"})
     )
-    private List<Nouvelle> nouvelles = new ArrayList<>();
+    private Set<Nouvelle> nouvelles = new HashSet<>();
 
     @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
@@ -41,7 +43,7 @@ public class Utilisateur {
             inverseJoinColumns = @JoinColumn(name = "role_id"),
             uniqueConstraints = @UniqueConstraint(columnNames = {"utilisateur_id", "role_id"})
     )
-    private List<Role> roles = new ArrayList<>();
+    private Set<Role> roles = new HashSet<>();
 
     /***
      * Indique quoi faire avant la suppression

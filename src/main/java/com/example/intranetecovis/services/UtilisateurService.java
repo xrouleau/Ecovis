@@ -4,13 +4,10 @@ import com.example.intranetecovis.models.DTOInscription;
 import com.example.intranetecovis.models.Role;
 import com.example.intranetecovis.models.Utilisateur;
 import com.example.intranetecovis.repositories.IUtilisateurRepository;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /***
  * Classe de service des utilisateurs
@@ -27,8 +24,8 @@ public class UtilisateurService {
      * @param role role le plus haut de l'utilisateur
      * @return liste avec le role le plus haut de l'utilisateur et tous ceux plus bas
      */
-    private List<Role> roles (int role) {
-        List<Role> roles = new ArrayList<>();
+    private Set<Role> roles (int role) {
+        Set<Role> roles = new HashSet<>();
         if (role == 1) {
             roles.add(roleService.findById(1));
         }
