@@ -39,7 +39,7 @@ public class Nouvelle {
     @PreRemove
     private void removeUtilisateur() {
         for (Utilisateur u : utilisateurs) {
-            List<Nouvelle> nouvelles = (List<Nouvelle>) u.getNouvelles();
+            Set<Nouvelle> nouvelles = (Set<Nouvelle>) u.getNouvelles();
             nouvelles.remove(this);
             u.setNouvelles((Set<Nouvelle>) nouvelles);
         }

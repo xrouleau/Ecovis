@@ -57,7 +57,7 @@
                                 <form:input path="password2" type="password" cssClass="form-control"/>
                                 <form:errors path="password2" cssClass="text-body-danger" />
                             </div>
-                            <button type="submit" class="btn btn-primary">Se connecter</button>
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
                         </form:form>
                     </div>
                 </div>
